@@ -1,0 +1,47 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-gray-300 py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-xl font-semibold mb-4">DataNews.ai</h3>
+        <p class="text-gray-400">
+          Your source for the latest news and insights in data science, machine learning, and AI.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Categories</h3>
+        <ul class="space-y-2">
+          <li><a href="/ai-ml" class="hover:text-white">AI & Machine Learning</a></li>
+          <li><a href="/data-engineering" class="hover:text-white">Data Engineering</a></li>
+          <li><a href="/analytics" class="hover:text-white">Analytics</a></li>
+          <li><a href="/research" class="hover:text-white">Research</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-xl font-semibold mb-4">Stay Updated</h3>
+        <p class="text-gray-400 mb-4">
+          Get the latest data science news delivered to your inbox.
+        </p>
+        <form class="flex gap-2">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="px-4 py-2 rounded-lg flex-1 text-gray-900"
+          />
+          <button
+            type="submit"
+            class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+      <p>&copy; {currentYear} DataNews.ai. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

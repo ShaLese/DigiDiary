@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getNews } from '../../utils/news';
+
+export async function getStaticPaths() {
+  const articles = await getNews();
+  return articles.map((article, index) => ({
+    params: { id: index.toString() },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const date = new Date(article.publishedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout title={article.title}>
+  <article class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+    {article.urlToImage && (
+      <img 
+        src={article.urlToImage} 
+        alt={article.title}
+        class="w-full h-96 object-cover"
+      />
+    )}
+    <div class="p-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">{article.title}</h1>
+      <div class="flex items-center text-gray-600 mb-8">
+        <span class="mr-4">{article.source.name}</span>
+        <time datetime={article.publishedAt}>{date}</time>
+      </div>
+      <div class="prose max-w-none">
+        <p class="text-lg text-gray-700 leading-relaxed mb-6">{article.description}</p>
+        {article.content && (
+          <p class="text-gray-700 leading-relaxed">{article.content}</p>
+        )}
+      </div>
+      {article.url && (
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <a 
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-indigo-600 hover:text-indigo-800"
+          >
+            Read full article at source →
+          </a>
+        </div>
+      )}
+    </div>
+  </article>
+</Layout>
